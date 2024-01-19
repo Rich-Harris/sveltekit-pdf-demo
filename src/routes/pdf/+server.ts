@@ -1,6 +1,6 @@
 import { PDFDocument, TextAlignment, layoutMultilineText, rgb } from 'pdf-lib';
 import fontkit from '@pdf-lib/fontkit';
-import FuturaPTCondBold from './fonts/FuturaPTCondBold.otf';
+import Overpass from './fonts/overpass-regular.otf';
 import { read } from '$app/server';
 import type { ServerlessConfig } from '@sveltejs/adapter-vercel';
 
@@ -15,7 +15,7 @@ export async function GET({ url }) {
 	const pdf = await PDFDocument.create();
 
 	pdf.registerFontkit(fontkit);
-	const font = await pdf.embedFont(await read(FuturaPTCondBold).arrayBuffer());
+	const font = await pdf.embedFont(await read(Overpass).arrayBuffer());
 
 	const page = pdf.addPage();
 
