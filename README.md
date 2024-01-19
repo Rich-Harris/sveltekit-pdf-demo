@@ -1,38 +1,12 @@
-# create-svelte
+# https://sveltekit-pdf-demo.vercel.app
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+This showcases the `read` function from [`$app/server`](https://kit.svelte.dev/docs/modules#$app-server), added in SvelteKit 2.4.0. It allows you to read an asset directly from the filesystem in Node-based deployments (with support planned for other runtimes in future):
 
-## Creating a project
+```js
+import FuturaPTCondBold from './fonts/FuturaPTCondBold.otf';
+import { read } from '$app/server';
 
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
+const font = await read(FuturaPTCondBold).arrayBuffer();
 ```
 
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+Any assets that are imported in this way will be included in the deployment.
