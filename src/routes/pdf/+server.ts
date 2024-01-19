@@ -1,4 +1,4 @@
-import { PDFDocument, rgb } from 'pdf-lib';
+import { PDFDocument, TextAlignment, layoutMultilineText, rgb } from 'pdf-lib';
 import fontkit from '@pdf-lib/fontkit';
 import FuturaPTCondBold from './fonts/FuturaPTCondBold.otf';
 import { read } from '$app/server';
@@ -10,6 +10,7 @@ export const config: ServerlessConfig = {
 
 export async function GET({ url }) {
 	const text = url.searchParams.get('text') || 'Hello world!';
+	const fontSize = +(url.searchParams.get('size') || '35');
 
 	const pdf = await PDFDocument.create();
 
@@ -18,15 +19,29 @@ export async function GET({ url }) {
 
 	const page = pdf.addPage();
 
-	// page.getHeight()
+	const margin = 40;
 
-	page.drawText(text, {
-		x: 40,
-		y: page.getHeight() - 75,
-		size: 35,
+	const layout = layoutMultilineText(text, {
+		alignment: TextAlignment.Left,
 		font,
-		color: rgb(0, 0, 0)
+		fontSize,
+		bounds: {
+			x: margin,
+			y: margin,
+			width: page.getWidth() - margin * 2,
+			height: page.getHeight() - margin * 2
+		}
 	});
+
+	for (const line of layout.lines) {
+		page.drawText(line.text, {
+			x: line.x,
+			y: line.y,
+			size: fontSize,
+			font,
+			color: rgb(0, 0, 0)
+		});
+	}
 
 	const bytes = await pdf.save();
 
