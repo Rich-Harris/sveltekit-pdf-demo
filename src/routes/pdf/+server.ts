@@ -2,20 +2,16 @@ import { PDFDocument, TextAlignment, layoutMultilineText, rgb } from 'pdf-lib';
 import fontkit from '@pdf-lib/fontkit';
 import Overpass from './fonts/overpass-regular.otf';
 import { read } from '$app/server';
-import type { ServerlessConfig } from '@sveltejs/adapter-vercel';
-
-export const config: ServerlessConfig = {
-	runtime: 'nodejs20.x'
-};
 
 export async function GET({ url }) {
 	const text = url.searchParams.get('text') || 'Hello world!';
 	const fontSize = +(url.searchParams.get('size') || '35');
 
 	const pdf = await PDFDocument.create();
-
 	pdf.registerFontkit(fontkit);
-	const font = await pdf.embedFont(await read(Overpass).arrayBuffer());
+
+	const font_data = await read(Overpass).arrayBuffer();
+	const font = await pdf.embedFont(font_data);
 
 	const page = pdf.addPage();
 

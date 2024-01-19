@@ -13,8 +13,8 @@
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^3.1.0",
-		"@sveltejs/adapter-vercel": "^5.0.0",
-		"@sveltejs/kit": "^2.4.0",
+		"@sveltejs/adapter-vercel": "^5.1.0",
+		"@sveltejs/kit": "^2.4.1",
 		"@sveltejs/vite-plugin-svelte": "^3.0.1",
 		"@types/blob-stream": "^0.1.33",
 		"@types/pdfmake": "^0.2.8",
