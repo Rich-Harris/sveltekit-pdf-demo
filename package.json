@@ -1,0 +1,41 @@
+{
+	"name": "my-app",
+	"version": "0.0.1",
+	"private": true,
+	"scripts": {
+		"dev": "vite dev",
+		"build": "vite build",
+		"preview": "vite preview",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"lint": "prettier --plugin-search-dir . --check . && eslint .",
+		"format": "prettier --plugin-search-dir . --write ."
+	},
+	"devDependencies": {
+		"@sveltejs/adapter-auto": "^3.1.0",
+		"@sveltejs/adapter-vercel": "^5.0.0",
+		"@sveltejs/kit": "^2.4.0",
+		"@sveltejs/vite-plugin-svelte": "^3.0.1",
+		"@types/blob-stream": "^0.1.33",
+		"@types/pdfmake": "^0.2.8",
+		"@typescript-eslint/eslint-plugin": "^6.19.0",
+		"@typescript-eslint/parser": "^6.19.0",
+		"eslint": "^8.56.0",
+		"eslint-config-prettier": "^9.1.0",
+		"eslint-plugin-svelte": "^2.35.1",
+		"prettier": "^3.2.4",
+		"prettier-plugin-svelte": "^3.1.2",
+		"svelte": "^4.2.9",
+		"svelte-check": "^3.6.3",
+		"tslib": "^2.6.2",
+		"typescript": "^5.3.3",
+		"vite": "^5.0.12"
+	},
+	"type": "module",
+	"dependencies": {
+		"@pdf-lib/fontkit": "^1.1.1",
+		"blob-stream": "^0.1.3",
+		"pdf-lib": "^1.17.1",
+		"pdfmake": "^0.2.9"
+	}
+}
